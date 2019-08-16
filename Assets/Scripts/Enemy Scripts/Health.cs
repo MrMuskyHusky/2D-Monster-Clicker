@@ -8,12 +8,14 @@ public class Health : MonoBehaviour
     public static float maxHealth;
     private float _percentHealth;
     public static bool monsterIsRespawning;
+    public bool isBoss;
     public Slider healthBar;
+    public BackgroundSwitch backgroundSwitch;
     public static float respawnDelay;
     public Text healthText;
     public int roundedHealth;
     public int bossCounter = 10;
-
+    private int backgroundCounter = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +51,10 @@ public class Health : MonoBehaviour
     void MonsterKilled()
     {
         // call growth script
+        if (isBoss)
+        {
+            BossKill();
+        }
 
         if (bossCounter > 0)
         {
@@ -58,8 +64,11 @@ public class Health : MonoBehaviour
         else
         {
             Growth.Boss();
+            isBoss = true;
             bossCounter = 10;
         }
+
+        
         // call respawn script to set helath back to full
         Invoke("Respawn", respawnDelay);
     }
@@ -74,5 +83,15 @@ public class Health : MonoBehaviour
     {
         health -= ClickButton.amountPerSecond;
         // update slider value
+    }
+
+    void BossKill()
+    {
+
+        isBoss = false;
+        Growth.BossDeath();
+        backgroundCounter++;
+        backgroundSwitch.SelectBackground(backgroundCounter);
+
     }
 }
