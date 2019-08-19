@@ -33,7 +33,6 @@ public class Health : MonoBehaviour
     {
         if (health <= 0 && !monsterIsRespawning)
         {
-            
             monsterIsRespawning = true;
             MonsterKilled();
         }
@@ -73,14 +72,14 @@ public class Health : MonoBehaviour
         }
 
         
-        // call respawn script to set helath back to full
+        // call respawn script after a certain delay to set health back to full
         Invoke("Respawn", respawnDelay);
     }
 
     void Respawn()
     {
-        health = maxHealth;
-        monsterIsRespawning = false;
+        health = maxHealth; // Sets health to the max health of the enemy.
+        monsterIsRespawning = false; // The monster has respawned so the enemy is no longer respwaning.
     }
 
     void Timer()
