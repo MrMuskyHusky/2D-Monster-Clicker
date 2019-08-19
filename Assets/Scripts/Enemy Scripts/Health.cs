@@ -33,13 +33,17 @@ public class Health : MonoBehaviour
     {
         if (health <= 0 && !monsterIsRespawning)
         {
-            health = 0;
+            
             monsterIsRespawning = true;
             MonsterKilled();
         }
     }
     private void LateUpdate()
     {
+        if (health < 0)
+        {
+            health = 0;
+        }
         if (healthBar.value != Mathf.Clamp01(health / maxHealth))
         {
             healthBar.value = Mathf.Clamp01(health / maxHealth);
