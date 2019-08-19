@@ -10,7 +10,7 @@ public class CriticalHit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        critChance = 1f; // 1%crit chance
+        critChance = 1f; // 1% crit chance
         critDamage = 2f; // each crit does twice the dmg
     }
 
