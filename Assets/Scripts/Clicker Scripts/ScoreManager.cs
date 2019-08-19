@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static int score;
+    public static float score;
+    private static int roundedScore;
     public static Text scoreDisplay;
     public float timer;
 
@@ -16,10 +17,8 @@ public class ScoreManager : MonoBehaviour
     }
     public static void Increase()
     {
-        if (!Health.monsterIsRespawning)
-        {
-            scoreDisplay.text = "Money: " + score;
-        }
+        roundedScore = Mathf.RoundToInt(score);
+        scoreDisplay.text = "Money: " + roundedScore;
     }
     private void Timer()
     {

@@ -16,8 +16,12 @@ public class ClickButton : MonoBehaviour
 
     public void ClickerButton()
     {
-        CriticalHit.CritCheck();
-        ScoreManager.Increase(); // Update the health slider value.
+        if (!Health.monsterIsRespawning) // the player cant hit the monster if it is respawning.
+        {
+            CriticalHit.CritCheck(); // Check if the hit is a critical hit or not.
+            ScoreManager.Increase(); // Update the health slider value.
+        }
+        
     }
     
 }

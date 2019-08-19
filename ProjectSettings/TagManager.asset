@@ -7,6 +7,11 @@ TagManager:
   - Score
   - Click
   - Health
+  - ClickDamageText
+  - DPSText
+  - CritChanceText
+  - CritDamageText
+  - UpgradeManager
   layers:
   - Default
   - TransparentFX
