@@ -43,6 +43,7 @@ public class Health : MonoBehaviour
         {
             health = 0;
         }
+
         if (healthBar.value != Mathf.Clamp01(health / maxHealth))
         {
             healthBar.value = Mathf.Clamp01(health / maxHealth);
