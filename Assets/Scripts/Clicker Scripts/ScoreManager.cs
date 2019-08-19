@@ -16,10 +16,7 @@ public class ScoreManager : MonoBehaviour
     }
     public static void Increase()
     {
-        if (!Health.monsterIsRespawning)
-        {
-            scoreDisplay.text = "Money: " + score;
-        }
+        scoreDisplay.text = "Money: " + score;
     }
     private void Timer()
     {

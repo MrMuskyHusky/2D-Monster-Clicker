@@ -84,8 +84,12 @@ public class Health : MonoBehaviour
 
     void Timer()
     {
-        health -= ClickButton.amountPerSecond;
-        // update slider value
+        if(!monsterIsRespawning)
+        {
+            health -= ClickButton.amountPerSecond;
+            // update slider value
+        }
+
     }
 
     void BossKill()
