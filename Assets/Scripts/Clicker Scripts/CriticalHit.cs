@@ -10,7 +10,7 @@ public class CriticalHit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        critChance = 100.0f;
+        critChance = 1f;
         critDamage = 2f;
     }
 

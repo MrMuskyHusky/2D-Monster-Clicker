@@ -20,7 +20,7 @@ public class UpgradeManager : MonoBehaviour
     public int[] critChanceValue;
     public float[] critDamageValue;
 
-
+    public bool calledUpgrade = false;
 
     private void Update()
     {
@@ -70,6 +70,7 @@ public class UpgradeManager : MonoBehaviour
         ClickButton.clickValue += clickValueValue[indexRef];
         clickValuePrices[indexRef] += 50;
         ScoreManager.Increase();
+        calledUpgrade = true;
     }
 
     public void PerSecondUpgrade(int indexRef)
@@ -78,6 +79,7 @@ public class UpgradeManager : MonoBehaviour
         ClickButton.amountPerSecond += perSecondValue[indexRef];
         perSecondPrices[indexRef] += 50;
         ScoreManager.Increase();
+        calledUpgrade = true;
     }
 
     public void CritChanceUpgrade(int indexRef)
@@ -86,6 +88,7 @@ public class UpgradeManager : MonoBehaviour
         CriticalHit.critChance += critChanceValue[indexRef];
         critChancePrices[indexRef] += 50;
         ScoreManager.Increase();
+        calledUpgrade = true;
     }
 
     public void CritDamageUpgrade(int indexRef)
@@ -94,5 +97,6 @@ public class UpgradeManager : MonoBehaviour
         CriticalHit.critDamage += critDamageValue[indexRef];
         critDamagePrices[indexRef] += 50;
         ScoreManager.Increase();
+        calledUpgrade = true;
     }
 }
