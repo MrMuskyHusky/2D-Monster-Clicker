@@ -11,7 +11,7 @@ public class Stats : MonoBehaviour
     private Text _currentCritDamage;
     private float _critDamageHolder;
     
-    public UpgradeManager upgradeManager;
+    public UpgradeManager upgradeManager; // i dont know how to make it link with code cause im retarded.
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +26,15 @@ public class Stats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (upgradeManager.calledUpgrade)
+        if (upgradeManager.calledUpgrade) // only works if something is upgraded
         {
-            upgradeManager.calledUpgrade = false;
+            upgradeManager.calledUpgrade = false; // toggle back off
 
+            // updates all the text elements
             _currentClickDamage.text = "Current Click Damage: " + ClickButton.clickValue;
             _currentDPS.text = "Current DPS: " + ClickButton.amountPerSecond;
             _currentCritChance.text = "Current Crit Chance: " + CriticalHit.critChance + "%";
+
             _critDamageHolder = Mathf.Round(CriticalHit.critDamage * 100f) / 100f;
             _currentCritDamage.text = "Current Crit Damage: " + _critDamageHolder;
         }

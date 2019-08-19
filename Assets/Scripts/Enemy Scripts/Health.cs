@@ -54,18 +54,19 @@ public class Health : MonoBehaviour
 
     void MonsterKilled()
     {
-        // call growth script
+        // if the monster which died is also a boss run the script
         if (isBoss)
         {
             BossKill();
         }
 
+        // if the monster which died is not the last monster before the boss, spawn a normal monster
         if (bossCounter > 0)
         {
             bossCounter--;
             Growth.HealthGrowth();
         }
-        else
+        else // otherwise spawn the boss 
         {
             Growth.Boss();
             isBoss = true;
@@ -87,18 +88,17 @@ public class Health : MonoBehaviour
     {
         if(!monsterIsRespawning)
         {
-            health -= ClickButton.amountPerSecond;
-            // update slider value
+            health -= ClickButton.amountPerSecond; // decreases the mosnter health if the mosnter is alive
         }
 
     }
 
-    void BossKill()
+    void BossKill() // called if the boss dies
     {
-
+        
         isBoss = false;
-        Growth.BossDeath();
-        backgroundCounter++;
+        Growth.BossDeath(); // lowers health so all the monster arent bloody bosses
+        backgroundCounter++; // switches background
         backgroundSwitch.SelectBackground(backgroundCounter);
 
     }

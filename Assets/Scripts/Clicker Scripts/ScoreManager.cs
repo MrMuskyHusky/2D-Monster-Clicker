@@ -17,7 +17,7 @@ public class ScoreManager : MonoBehaviour
     }
     public static void Increase()
     {
-        roundedScore = (int)Mathf.Round(score);
+        roundedScore = Mathf.RoundToInt(score);
         scoreDisplay.text = "Money: " + roundedScore;
     }
     private void Timer()
