@@ -14,5 +14,7 @@ public class BackgroundSwitch : MonoBehaviour
             image.SetActive(false);
         }
         backgrounds[index].SetActive(true);
+
+
     }
 }

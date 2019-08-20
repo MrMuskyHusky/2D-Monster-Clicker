@@ -18,4 +18,9 @@ public class Growth : MonoBehaviour
     {
         Health.maxHealth *= 0.1f;
     }
+
+    public static void PlayerDeath()
+    {
+        Health.maxHealth *= 0.1f / (float)(1.2 * 1.2 * 1.2 * 1.2 * 1.2 * 1.2 * 1.2 * 1.2 * 1.2 * 1.2 * 1.2);
+    }
 }

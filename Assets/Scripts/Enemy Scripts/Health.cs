@@ -14,27 +14,56 @@ public class Health : MonoBehaviour
     public static float respawnDelay;
     public Text healthText;
     public int roundedHealth;
-    public int bossCounter = 10;
+    public int bossCounter = 9;
+    public EnemySwitcher enemySwitcher;
     private int backgroundCounter = 0;
+
+    public float bossTimer;
+    public Text bossTimerText;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        health = 10;
+        health = 5;
         maxHealth = health;
         monsterIsRespawning = false;
         respawnDelay = 0.5f;
         InvokeRepeating("Timer", 1, 0.25f);
         healthText = GameObject.FindGameObjectWithTag("Health").GetComponent<Text>();
+        bossTimerText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0 && !monsterIsRespawning)
+        if (health <= 0 && !monsterIsRespawning) // if the monster is dead
         {
             monsterIsRespawning = true;
             MonsterKilled();
+        }
+        else if (health >= 0 && isBoss) // if the monster is alive and is a boss monster
+        {
+            bossTimerText.text = "Time left: " + ((Mathf.Round(bossTimer - Time.time) * 10) / 10);
+        }
+
+        if ((bossTimer - Time.time) < 0 && isBoss)
+        {
+            // disable timer text
+            bossTimerText.gameObject.SetActive(false);
+            // add code to make player go back stages.
+            
+            
+            // kill the monster
+            health = 0;
+            isBoss = false;
+            // lower the max health by 0.1 * .2^9
+            Growth.PlayerDeath();
+            health = maxHealth;
+            health -= 0.1f;
+            // Switch monster art
+            enemySwitcher.ChangeSprite();
+            // FIX THIS LATER
         }
     }
     private void LateUpdate()
@@ -47,7 +76,12 @@ public class Health : MonoBehaviour
         if (healthBar.value != Mathf.Clamp01(health / maxHealth))
         {
             healthBar.value = Mathf.Clamp01(health / maxHealth);
-            roundedHealth = (int)Mathf.Round(health);
+            roundedHealth = Mathf.RoundToInt(health);
+
+            if (health < 1 && health > 0)
+            {
+                roundedHealth = 1;
+            }
             healthText.text = "HP: " + roundedHealth;
         }
     }
@@ -68,9 +102,11 @@ public class Health : MonoBehaviour
         }
         else // otherwise spawn the boss 
         {
-            Growth.Boss();
+            Growth.Boss(); // give the boss 10x health
             isBoss = true;
-            bossCounter = 10;
+            bossCounter = 9; // reset the counter
+            bossTimer = Time.time + 30f; // set the timer to 30 seconds in the future.
+            bossTimerText.gameObject.SetActive(true); // enable the timer
         }
 
         
@@ -99,6 +135,8 @@ public class Health : MonoBehaviour
         isBoss = false;
         Growth.BossDeath(); // lowers health so all the monster arent bloody bosses
         backgroundCounter++; // switches background
+        bossTimerText.gameObject.SetActive(false); // disable the timer
+
         if (backgroundCounter < 6)
         {
             backgroundSwitch.SelectBackground(backgroundCounter); // switches to the next background
