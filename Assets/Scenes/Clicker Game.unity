@@ -1211,7 +1211,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Current Crit Damage: 2.0'
+  m_Text: 'Current Crit Damage: 2x'
 --- !u!222 &298836395
 CanvasRenderer:
   m_ObjectHideFlags: 0

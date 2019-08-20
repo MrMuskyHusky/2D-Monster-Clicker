@@ -99,7 +99,14 @@ public class Health : MonoBehaviour
         isBoss = false;
         Growth.BossDeath(); // lowers health so all the monster arent bloody bosses
         backgroundCounter++; // switches background
-        backgroundSwitch.SelectBackground(backgroundCounter);
-
+        if (backgroundCounter < 6)
+        {
+            backgroundSwitch.SelectBackground(backgroundCounter); // switches to the next background
+        }
+        else
+        {
+            backgroundCounter = 0; // resets counter
+            backgroundSwitch.SelectBackground(backgroundCounter); // swaps back to the first background
+        }
     }
 }
