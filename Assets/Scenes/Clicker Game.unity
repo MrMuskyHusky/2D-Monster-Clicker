@@ -222,6 +222,7 @@ MonoBehaviour:
   healthText: {fileID: 0}
   roundedHealth: 0
   bossCounter: 10
+  enemySwitcher: {fileID: 1722338206}
   bossTimer: 0
   bossTimerText: {fileID: 919315950}
 --- !u!4 &73291874
@@ -8034,7 +8035,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  SpawnEnemy: 0
+  spawnEnemy: 0
 --- !u!4 &1722338207
 Transform:
   m_ObjectHideFlags: 0
