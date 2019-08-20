@@ -35,8 +35,8 @@ public class Stats : MonoBehaviour
             _currentDPS.text = "Current DPS: " + ClickButton.amountPerSecond;
             _currentCritChance.text = "Current Crit Chance: " + CriticalHit.critChance + "%";
 
-            _critDamageHolder = Mathf.Round(CriticalHit.critDamage * 100f) / 100f;
-            _currentCritDamage.text = "Current Crit Damage: " + _critDamageHolder;
+            _critDamageHolder = Mathf.Round(CriticalHit.critDamage * 10f) / 10f;
+            _currentCritDamage.text = "Current Crit Damage: " + _critDamageHolder + "x";
         }
     }
 }
