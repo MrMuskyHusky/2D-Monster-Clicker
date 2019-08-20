@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -19,6 +20,13 @@ public class UpgradeManager : MonoBehaviour
     public int[] clickValueValue;
     public int[] critChanceValue;
     public float[] critDamageValue;
+
+    [Header("Text Elements")]
+    public Text[] perSecondText;
+    public Text[] clickValueText;
+    public Text[] critChanceText;
+    public Text[] critDamageText;
+
 
     public bool calledUpgrade = false;
 
@@ -71,6 +79,7 @@ public class UpgradeManager : MonoBehaviour
         clickValuePrices[indexRef] += 50;
         ScoreManager.Increase();
         calledUpgrade = true;
+        clickValueText[indexRef].text = "Cost: " + clickValuePrices[indexRef];
     }
 
     public void PerSecondUpgrade(int indexRef)
@@ -80,6 +89,7 @@ public class UpgradeManager : MonoBehaviour
         perSecondPrices[indexRef] += 50;
         ScoreManager.Increase();
         calledUpgrade = true;
+        perSecondText[indexRef].text = "Cost: " + perSecondPrices[indexRef];
     }
 
     public void CritChanceUpgrade(int indexRef)
@@ -89,6 +99,7 @@ public class UpgradeManager : MonoBehaviour
         critChancePrices[indexRef] += 50;
         ScoreManager.Increase();
         calledUpgrade = true;
+        critChanceText[indexRef].text = "Cost: " + critChancePrices[indexRef];
     }
 
     public void CritDamageUpgrade(int indexRef)
@@ -98,5 +109,6 @@ public class UpgradeManager : MonoBehaviour
         critDamagePrices[indexRef] += 50;
         ScoreManager.Increase();
         calledUpgrade = true;
+        critDamageText[indexRef].text = "Cost: " + critDamagePrices[indexRef];
     }
 }
