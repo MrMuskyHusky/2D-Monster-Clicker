@@ -44,7 +44,7 @@ public class Health : MonoBehaviour
         }
         else if (health >= 0 && isBoss) // if the monster is alive and is a boss monster
         {
-            bossTimerText.text = "Time left: " + (Mathf.Round(bossTimer - Time.time) * 10 / 10);
+            bossTimerText.text = "Time left: " + Mathf.RoundToInt((bossTimer - Time.time) * 10) / 10;
         }
 
         if ((bossTimer - Time.time) < 0 && isBoss)
@@ -62,7 +62,12 @@ public class Health : MonoBehaviour
             health -= 0.01f; // this is enough to move the health bar slightly.
             // Switch monster art
             enemySwitcher.ChangeSprite();
-            // FIX THIS LATER
+            backgroundCounter--;
+            if (backgroundCounter < 0)
+            {
+                backgroundCounter = 0;
+            }
+            BackgroundSwitch();
         }
     }
     private void LateUpdate()
