@@ -29,7 +29,8 @@ public class EnemySwitcher : MonoBehaviour
     {
         if (Health.monsterIsRespawning && !spawnEnemy)
         {
-            Invoke("ChangeSprite", 0.5f);
+            Invoke("ChangeSprite", Health.respawnDelay);
+            spawnEnemy = true;
         }
 
         if (!Health.monsterIsRespawning && spawnEnemy)
@@ -41,16 +42,15 @@ public class EnemySwitcher : MonoBehaviour
 
     public void ChangeSprite()
     {
-        int random = Random.Range(0, 3);
+        int random = Random.Range(0, monsters.Length);
 
         while (random == compare)
         {
-            random = Random.Range(0, 3);
+            random = Random.Range(0, monsters.Length);
         }
 
         compare = random;
         image.sprite = monsters[random];
-        spawnEnemy = true;
     }
 
     

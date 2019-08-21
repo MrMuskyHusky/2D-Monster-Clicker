@@ -11,7 +11,7 @@ public class Stats : MonoBehaviour
     private Text _currentCritDamage;
     private float _critDamageHolder;
     
-    public UpgradeManager upgradeManager; // i dont know how to make it link with code cause im retarded.
+    public UpgradeManager upgradeManager; 
     // Start is called before the first frame update
     void Start()
     {
@@ -20,15 +20,15 @@ public class Stats : MonoBehaviour
         _currentCritChance = GameObject.FindGameObjectWithTag("CritChanceText").GetComponent<Text>();
         _currentCritDamage = GameObject.FindGameObjectWithTag("CritDamageText").GetComponent<Text>();
 
-        // upgradeManager = GameObject.FindGameObjectWithTag("UpgradeManager").GetComponent<UpgradeManager>;
+        upgradeManager = GameObject.FindGameObjectWithTag("UpgradeManager").GetComponent<UpgradeManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (upgradeManager.calledUpgrade) // only works if something is upgraded
+        if (upgradeManager.calledUpgrade) 
         {
-            upgradeManager.calledUpgrade = false; // toggle back off
+            upgradeManager.calledUpgrade = false;
 
             // updates all the text elements
             _currentClickDamage.text = "Current Click Damage: " + ClickButton.clickValue;

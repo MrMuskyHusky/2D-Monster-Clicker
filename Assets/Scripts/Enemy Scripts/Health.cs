@@ -44,7 +44,7 @@ public class Health : MonoBehaviour
         }
         else if (health >= 0 && isBoss) // if the monster is alive and is a boss monster
         {
-            bossTimerText.text = "Time left: " + ((Mathf.Round(bossTimer - Time.time) * 10) / 10);
+            bossTimerText.text = "Time left: " + (Mathf.Round(bossTimer - Time.time) * 10 / 10);
         }
 
         if ((bossTimer - Time.time) < 0 && isBoss)
@@ -55,12 +55,11 @@ public class Health : MonoBehaviour
             
             
             // kill the monster
-            health = 0;
             isBoss = false;
             // lower the max health by 0.1 * .2^9
             Growth.PlayerDeath();
             health = maxHealth;
-            health -= 0.1f;
+            health -= 0.01f; // this is enough to move the health bar slightly.
             // Switch monster art
             enemySwitcher.ChangeSprite();
             // FIX THIS LATER
@@ -70,7 +69,7 @@ public class Health : MonoBehaviour
     {
         if (health < 0)
         {
-            health = 0;
+            health = 0; // health clamp
         }
 
         if (healthBar.value != Mathf.Clamp01(health / maxHealth))
@@ -139,12 +138,17 @@ public class Health : MonoBehaviour
 
         if (backgroundCounter < 6)
         {
-            backgroundSwitch.SelectBackground(backgroundCounter); // switches to the next background
+            Invoke("BackgroundSwitch", respawnDelay);
         }
         else
         {
             backgroundCounter = 0; // resets counter
-            backgroundSwitch.SelectBackground(backgroundCounter); // swaps back to the first background
+            Invoke("BackgroundSwitch", respawnDelay);
         }
+    }
+
+    void BackgroundSwitch()
+    {
+        backgroundSwitch.SelectBackground(backgroundCounter); // switches to the next background
     }
 }
