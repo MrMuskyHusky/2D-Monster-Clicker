@@ -6,7 +6,7 @@ public class EnemySwitcher : MonoBehaviour
 {
     public Button click;
     public Image image;
-    public Sprite[] monsters = new Sprite[4];
+    public Sprite[] monsters = new Sprite[7];
     string m_Path;
     public bool SpawnEnemy = false;
     int compare = 0;
@@ -16,10 +16,14 @@ public class EnemySwitcher : MonoBehaviour
     {
         click = GameObject.FindGameObjectWithTag("Click").GetComponent<Button>();
         image = click.GetComponent<Image>();
-        monsters[0] = Resources.Load<Sprite>("monster1");
-        monsters[1] = Resources.Load<Sprite>("monster2");
-        monsters[2] = Resources.Load<Sprite>("monster3");
-        monsters[3] = Resources.Load<Sprite>("monster4");
+        monsters[0] = Resources.Load<Sprite>("Backgroundcopy");
+        monsters[1] = Resources.Load<Sprite>("Backgroundcopy2");
+        monsters[2] = Resources.Load<Sprite>("Backgroundcopy3");
+        monsters[3] = Resources.Load<Sprite>("Backgroundcopy4");
+        monsters[4] = Resources.Load<Sprite>("Backgroundcopy5");
+        monsters[5] = Resources.Load<Sprite>("Backgroundcopy6");
+        monsters[6] = Resources.Load<Sprite>("Backgroundcopy7");
+        monsters[7] = Resources.Load<Sprite>("Backgroundcopy8");
         image.sprite = monsters[0];
 
         //Get the path of the Game data folder
@@ -35,10 +39,10 @@ public class EnemySwitcher : MonoBehaviour
     {
         if (Health.monsterIsRespawning && !SpawnEnemy)
         {  
-            int random = Random.Range(0, 3);
+            int random = Random.Range(0, 7);
             while (random == compare)
             {
-                random = Random.Range(0, 3);
+                random = Random.Range(0, 7);
                 Debug.Log("UNLUCKY");
             }
             compare = random;
