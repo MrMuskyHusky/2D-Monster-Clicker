@@ -7,9 +7,9 @@ public class EnemySwitcher : MonoBehaviour
     public Button click;
     public Image image;
     public Sprite[] monsters = new Sprite[7];
-    string m_Path;
-    public bool SpawnEnemy = false;
-    int compare = 0;
+    
+    public bool spawnEnemy = false;
+    private int compare = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -26,42 +26,36 @@ public class EnemySwitcher : MonoBehaviour
         monsters[7] = Resources.Load<Sprite>("Backgroundcopy8");
         image.sprite = monsters[0];
 
-        //Get the path of the Game data folder
-        m_Path = Application.dataPath;
-
-        //Output the Game data path to the console
-        Debug.Log("Path : " + m_Path);
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Health.monsterIsRespawning && !SpawnEnemy)
-        {  
-            int random = Random.Range(0, 7);
-            while (random == compare)
-            {
-                random = Random.Range(0, 7);
-                Debug.Log("UNLUCKY");
-            }
-            compare = random;
-            image.sprite = monsters[random];
-            Debug.Log("New Enenmy");
-            SpawnEnemy = true;
-            Invoke("Swap", Health.respawnDelay);
+        if (Health.monsterIsRespawning && !spawnEnemy)
+        {
+            Invoke("ChangeSprite", Health.respawnDelay);
+            spawnEnemy = true;
+        }
+
+        if (!Health.monsterIsRespawning && spawnEnemy)
+        {
+            spawnEnemy = false;
         }
 
     }
-    void Swap()
+
+    public void ChangeSprite()
     {
-        if (SpawnEnemy)
+        int random = Random.Range(0, monsters.Length);
+
+        while (random == compare)
         {
-            SpawnEnemy = false;
+            random = Random.Range(0, monsters.Length);
         }
-        else
-        {
-            Debug.Log("DONT CALL THBIKS MORE YTHAN ONCE");
-        }
+
+        compare = random;
+        image.sprite = monsters[random];
     }
+
+    
 }
